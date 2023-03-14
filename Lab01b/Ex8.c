@@ -1,32 +1,21 @@
 #include <stdio.h>
-#include <stdlib.h>
+#define NLIN 3
+#define NCOL 2
 
-int** transposta(int** matriz, int linhas, int colunas){
-	int** m = (int**)malloc(sizeof(int*)*linhas);
-	for (int i = 0; i < linhas; i++){
-		m[i] = (int*)malloc(sizeof(int)*colunas);
-	}
-       	for (int i = 0; i < colunas; i++){
-		for (int j = 0; j < linhas; j++){
-			m[i][j] = matriz[j][i];
+void transposta(int matriz[NLIN][NCOL], int matrizT[NCOL][NLIN]){
+	for (int i = 0; i < NCOL; i++){
+		for (int j = 0; j < NLIN; j++){
+			matrizT[i][j] = matriz[j][i];
 		}
 	}
-	return m;
 }
 
 int main(){
-	int** matriz (int**)malloc(sizeof(int*)*3);
-	for (int i = 0; i < 3; i++){
-		matriz[i] = (int*)malloc(sizeof(int)*2);
-	}
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 2; j++){
-			matriz[i][j] = i * j;
-		}
-	}
-	int** matrizT = transposta(matriz, 3, 2);
-	for (int i = 0; i < 2; i++){
-		for (int j = 0; j < 3; j++){
+	int matriz[NLIN][NCOL] = {{1,5},{7,3},{8,2}};
+	int matrizT[NCOL][NLIN];
+	transposta(matriz, matrizT);
+	for (int i = 0; i < NCOL; i++){
+		for (int j = 0; j < NLIN; j++){
 			printf("%d ", matrizT[i][j]);
 		}
 		printf("\n");
