@@ -6,45 +6,59 @@
 #include <string.h>
 
 int main(int argc, char* argv[]){
+	
+	// Checagem de quantidade de argumentos passados.
 	if (argc < 2)
 	{
 		printf("Usage: pass the number to calculate the factorial of it.\n");
 		return 1;
 	}
 
-        int value = atoi(argv[1]); // valor que desejamos calcular o fatorial
-        int start, end; // valores para saber de onde cada processo comeca e ate onde vai
-        int fd[2];
-        if (pipe(fd) == -1){ // caso o pipe nao possa ser criado
+        int value = atoi(argv[1]); // Valor, passado como argumento, que desejamos calcular o fatorial.
+        int start, end; // Valores para saber de onde cada processo comeca e ate onde vai.
+        int fd[2]; // File Descriptors. Inteiros que representam um arquivo aberto.
+        
+	// Caso o pipe nao possa ser criado.
+	if (pipe(fd) == -1)
                 return 1;
-        }
 
+	// Criar um novo processo.
         int id = fork();
-        if (id == -1){ // caso o fork nao possa ser criado
-                return 1;
-        }
 
-        if (id == 0){ // processo filho vai de 1 ate o piso da metade do valor que desejamos obter o fatorial
+	// Caso o novo processo nao possa ser criado.
+        if (id == -1) 
+                return 1;
+
+	// Processo filho vai de 1 ate o piso da metade do valor que desejamos obter o fatorial.
+        if (id == 0)
+	{ 
                 start = 1;
                 end = value / 2;
-        } else { // processo pai vai do teto da metado do valor ate o valor em si
+        } 
+	
+	// Processo pai vai do teto da metado do valor ate o valor em si.
+	else 
+	{ 
                 start = value / 2 + 1;
                 end = value;
         }
 
         long long int fat = 1;
         int i;
-        for (i = start; i <= end; i++){
+        
+	for (i = start; i <= end; i++)
                 fat = fat * i;
-        }
 
-        printf("Calculo dos resultados parciais: %lld\n", fat); // mostra os valores obtidos em cada um dos processos
+        printf("Calculo dos resultados parciais: %lld\n", fat); 
 
-        if (id == 0){
+        if (id == 0)
+	{
                 close(fd[0]);
                 write(fd[1], &fat, sizeof(fat)); // grava o que foi obtido no processo pai na variavel result
                 close(fd[1]);
-        } else {
+        } 
+	
+	else {
                 long long int fatChild;
                 close(fd[1]);
                 read(fd[0], &fatChild, sizeof(fatChild)); // passa o que foi obtido no processo filho para a variavel resultChild
