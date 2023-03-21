@@ -6,7 +6,7 @@
 #include <string.h>
 
 int main(int argc, char* argv[]){
-        int fat = 23; // valor que desejamos calcular o fatorial
+        int value = atoi(argv[1]); // valor que desejamos calcular o fatorial
         int start, end; // valores para saber de onde cada processo comeca e ate onde vai
         int fd[2];
         if (pipe(fd) == -1){ // caso o pipe nao possa ser criado
@@ -20,32 +20,32 @@ int main(int argc, char* argv[]){
 
         if (id == 0){ // processo filho vai de 1 ate o piso da metade do valor que desejamos obter o fatorial
                 start = 1;
-                end = fat / 2;
+                end = value / 2;
         } else { // processo pai vai do teto da metado do valor ate o valor em si
-                start = fat / 2 + 1;
-                end = fat;
+                start = value / 2 + 1;
+                end = value;
         }
 
-        int result = 1;
+        long long int fat = 1;
         int i;
         for (i = start; i <= end; i++){
-                result = result * i;
+                fat = fat * i;
         }
 
-        printf("Calculo dos resultados parciais: %d\n", result); // mostra os valores obtidos em cada um dos processos
+        printf("Calculo dos resultados parciais: %lld\n", fat); // mostra os valores obtidos em cada um dos processos
 
         if (id == 0){
                 close(fd[0]);
-                write(fd[1], &result, sizeof(result)); // grava o que foi obtido no processo pai na variavel result
+                write(fd[1], &fat, sizeof(fat)); // grava o que foi obtido no processo pai na variavel result
                 close(fd[1]);
         } else {
-                int resultChild;
+                long long int fatChild;
                 close(fd[1]);
-                read(fd[0], &resultChild, sizeof(resultChild)); // passa o que foi obtido no processo filho para a variavel resultChild
+                read(fd[0], &fatChild, sizeof(fatChild)); // passa o que foi obtido no processo filho para a variavel resultChild
                 close(fd[0]);
 
-                int totalResult = result * resultChild; // gera o resultado final
-                printf("Resultado final: %d\n", totalResult);
+                long long int totalResult = fat * fatChild; // gera o resultado final
+                printf("Resultado final: %lld\n", totalResult);
                 wait(NULL);
         }
 
