@@ -6,6 +6,12 @@
 #include <string.h>
 
 int main(int argc, char* argv[]){
+	if (argc < 2)
+	{
+		printf("Usage: pass the number to calculate the factorial of it.\n");
+		return 1;
+	}
+
         int value = atoi(argv[1]); // valor que desejamos calcular o fatorial
         int start, end; // valores para saber de onde cada processo comeca e ate onde vai
         int fd[2];
