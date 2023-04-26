@@ -1,0 +1,4 @@
+Speedup:
+2 Threads = 2.49
+4 Threads = 2.36
+8 Threads = 1.92
