@@ -23,7 +23,7 @@ int main(void) {
 
   long double num;
   num = EulerNum(10);
-  printf("\nlong double: %Lf \n", num);
+  printf("\nlong double: %.33Lf \n", num);
   
   return 0;
 }
