@@ -22,8 +22,8 @@ long double EulerNum(int n) {
 int main(void) {
 
   long double num;
-  num = EulerNum(10);
-  printf("\nlong double: %.33Lf \n", num);
+  num = EulerNum(1000);
+  printf("\nlong double: %.65Lf \n", num);
   
   return 0;
 }
