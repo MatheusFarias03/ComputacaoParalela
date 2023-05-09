@@ -51,6 +51,8 @@ int main(int argc, char* argv[]){
   mpf_init2(fat, 33500U);
   mpf_set_ui(fat, 1);
   mpf_t div;
+  mpf_init2(div, 1);
+  mpf_set_ui(div, 1);
   int i;
   
   for (i = start; i <= end; i++){
