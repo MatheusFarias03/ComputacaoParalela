@@ -51,15 +51,15 @@ int main(int argc, char* argv[]){
   }
   
   mpf_set_ui(fat, 1);
-  mpf_t div;
-  mpf_init2(div, 1);
-  mpf_set_ui(div, 1);
+  mpf_t num;
+  mpf_init2(num, 1);
+  mpf_set_ui(num, 1);
   int i;
   
   for (i = start; i <= end; i++){
     mpf_mul_ui(fat, fat, i);
-    mpf_ui_div(div, 1, fat);
-    mpf_add(euler, euler, div);
+    mpf_ui_div(num, 1, fat);
+    mpf_add(euler, euler, num);
   }
 
   gmp_printf("Calculo dos resultados parciais: %.100Ff\n", euler);
@@ -73,12 +73,13 @@ int main(int argc, char* argv[]){
 	
   else {
     close(fd[1]);
-    read(fd[0], &eulerChild, sizeof(euler)); // passa o que foi obtido no processo filho para a variavel resultChild
+    read(fd[0], &eulerChild, sizeof(eulerChild)); // passa o que foi obtido no processo filho para a variavel resultChild
     close(fd[0]);
     
     mpf_add(totalResult, totalResult, euler);
     gmp_printf("Total Result + euler: %.15Ff\n", totalResult);
 
+    gmp_printf("Euler: %.15Ff\n", euler);
     gmp_printf("Euler Child: %.15Ff\n", eulerChild);
    
     // gmp_printf("Resultado Final: %.9999Ff\n", totalResult);
@@ -87,7 +88,7 @@ int main(int argc, char* argv[]){
     wait(NULL);
   }
   mpf_clear(euler);
-  mpf_clear(div);
+  mpf_clear(num);
   mpf_clear(fat);
   return 0;
 }
