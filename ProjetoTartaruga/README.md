@@ -15,3 +15,14 @@ Para a segunda entrega (9/5/2023) conseguimos realizar a versão paralela (inici
 
 Screenshot:
 ![screenshot](https://github.com/MatheusFarias03/ComputacaoParalela/blob/main/ProjetoTartaruga/Screenshot%20from%202023-05-09.png)
+
+Após a última entrega, desenvolvemos um novo código que desta vez funcional, imprimindo corretamente 10000 casas e realizando em paralelo, acreditamos que o problema da última entrega era a condição de corrida, onde não estávamos usando semáforos para realizar as trocas de valores. 
+As imagens a seguir mostram o resultado que conseguimos e os tempos de execução.
+
+Os resultados parciais são os cálculos da somatória de 1/x!, com o primeiro valor indo de x = 1 até x = 5000, e o segundo indo de x = 5001 até x = 10000. Em nosso código a variável que recebe o resultado final ja começa em 1 considerando o 1/0!.
+
+Resultado:
+![screenshot]()
+
+Tempo de Execução:
+![screenshot]()
