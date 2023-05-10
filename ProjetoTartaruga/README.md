@@ -22,7 +22,7 @@ As imagens a seguir mostram o resultado que conseguimos e os tempos de execuçã
 Os resultados parciais são os cálculos da somatória de 1/x!, com o primeiro valor indo de x = 1 até x = 5000, e o segundo indo de x = 5001 até x = 10000. Em nosso código a variável que recebe o resultado final ja começa em 1 considerando o 1/0!.
 
 Resultado:
-![screenshot]()
+![screenshot](https://github.com/MatheusFarias03/ComputacaoParalela/blob/main/ProjetoTartaruga/Screenshot_Resultado_Euler.png)
 
 Tempo de Execução:
-![screenshot]()
+![screenshot](https://github.com/MatheusFarias03/ComputacaoParalela/blob/main/ProjetoTartaruga/Screenshot_Tempo_Euler.png)
