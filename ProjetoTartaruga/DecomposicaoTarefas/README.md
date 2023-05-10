@@ -1,6 +1,7 @@
 1) Resumindo são duas tarefas principais, a primeira (S1) irá fazer o somatorio de 1/x! sendo que x começará em 1 e irá até n/2, sendo o n o maior valor do somatório, enquanto a segunda tarefa (S2) irá também fazer um somatório porém começando com x em n/2 + 1 e indo até n propriamente dito.
 
-Screenshot: ![screenshot](https://github.com/MatheusFarias03/ComputacaoParalela/blob/main/ProjetoTartaruga/DecomposicaoTarefas/DAG.png) 
+Screenshot:
+![screenshot](https://github.com/MatheusFarias03/ComputacaoParalela/blob/main/ProjetoTartaruga/DecomposicaoTarefas/DAG.png) 
 
 2) Com base no DAG a cima e na resposta da questão anterior, concluímos que a tarefa que irá tomar mais tempo será a segunda, que pode ser vista como S2, visto que está necessitará de mais tempo já que irá calcular valores maiores para os fatoriais de x. Então, o limite inferior do tempo de execução paralela é o tempo necessário para executar o somatório em S2.
 
