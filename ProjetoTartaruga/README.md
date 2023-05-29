@@ -28,7 +28,7 @@ Tempo de Execução:
 
 ![screenshot](https://github.com/MatheusFarias03/ComputacaoParalela/blob/main/ProjetoTartaruga/Screenshot_Tempo_Euler.png)
 
-Projeto Final:
+Entrega Final:
 
 Com o projeto finalizado, iremos responder os seguintes pontos:
 * Como resolveram o problema:  descrição simples do algoritmo e estratégia de paralelismo adotada
