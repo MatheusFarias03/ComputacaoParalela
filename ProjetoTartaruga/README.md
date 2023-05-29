@@ -31,6 +31,7 @@ Tempo de Execução:
 Entrega Final:
 
 Com o projeto finalizado, iremos responder os seguintes pontos:
+
 * Como resolveram o problema:  descrição simples do algoritmo e estratégia de paralelismo adotada
 
   Nosso código recebe duas entradas, número de threads que serão utilizadas e o valor de n (valor máximo do fatorial calculado a cada divisão realizada pela série de Taylor), então dividimos o código de acordo com a quantidade de threads, cada thread irá realizar uma parte do somatório.
@@ -38,6 +39,12 @@ Com o projeto finalizado, iremos responder os seguintes pontos:
   Dentro da função euler_paralelo (função que realiza do somatório), são inicializadas várias variáveis para cada thread, incluindo start e end para determinar a faixa de cálculo de cada thread, fat para o fatorial parcial, div para o resultado da divisão, euler para armazenar a soma parcial e cur_res para resultados intermediários. 
   
   Para a realização do projeto utilizamos duas principais bibliotecas (OMP - Open Multi-Processing e GMP - GNU Multiple-Precision), a biblioteca OMP foi utilizada para garantir o paralelismo, escolhemos utilizar essa biblioteca pela facilidade para lidar com os problemas de corrida, a diretiva #pragma omp critical auxiliou gerando uma área crítica, que, no nosso caso, impede que uma thread modifique o valor de uma variável enquanto outra tenta o mesmo. Já a biblioteca GMP foi utilizada para que fosse possível armazenar e realizar cálculos com números com diversas casas decimais, por exemplo, as variáveis mencionadas anteriormente (fat, euler e cur_res) foram inicializadas utilizando o tipo mpf_t, para que fossem variáveis de tamanho maior que double e com maior precisão.
+  
+  Breve explicação das principais funções vindas do GMP utilizadas:
+
+  mpf_mul: Usa o algoritmo de Karatsuba, que permite multiplicar dois números grandes dividindo-os em partes menores e combinando os resultados. A ideia principal é reduzir o número de multiplicações necessárias para obter o produto final.
+  
+  mpf_div: O algoritmo de Single Limb Division é usado para realizar a divisão. Ele divide um número grande (representado como uma sequência de "limbs" ou blocos de dígitos) por um número menor (representado como um único "limb") usando divisões repetidas de 2x1.
   
 * Qual foi o speedup da última versão e como eles fizeram para melhorar
 
